@@ -36,21 +36,29 @@ class ReadData:
 class TestAdd(unittest.TestCase):
     '''Testing the calculator'''
 
+    calculator = None
+
+    @classmethod
+    def setUpClass(cls):
+        cls.calculator = cal("Testing Calculator")
+
+    def test_calC_init(self):
+        self.assertIsInstance(self.calculator,cal,"Calculator object is not correctly instantiated.")
+
     def test_add(self):
         '''Testing add menthod'''
         filePath = 'testCases/Unit Test Addition.csv'
 
         val1,val2,res = ReadData.readData3Col(filePath)
 
-        calculator = cal("Addition Calculator Testing")
         passed = 0
         failed = 0
         for i in range(0,len(val1)):
             try:
-                self.assertEqual(calculator.add(val1[i], val2[i]), res[i])
+                self.assertEqual(self.calculator.add(val1[i], val2[i]), res[i])
                 passed +=1
             except Exception:
-                print("Addition : "+str(calculator.multiply(val1[i], val2[i]))+"!="+str(res[i]))
+                print("Addition : "+str(self.calculator.multiply(val1[i], val2[i]))+"!="+str(res[i]))
                 failed+=1
         print("Addition test-report : Passed:"+str(passed)+"   Failed:"+str(failed))
 
@@ -60,15 +68,14 @@ class TestAdd(unittest.TestCase):
 
         val1,val2,res = ReadData.readData3Col(filePath)
 
-        calculator = cal("Subtraction Calculator Testing")
         passed = 0
         failed = 0
         for i in range(0, len(val1)):
             try:
-                self.assertEqual(calculator.subtract(val1[i], val2[i]), res[i])
+                self.assertEqual(self.calculator.subtract(val1[i], val2[i]), res[i])
                 passed += 1
             except Exception:
-                print("Subtraction : "+str(calculator.multiply(val1[i], val2[i]))+"!="+str(res[i]))
+                print("Subtraction : "+str(self.calculator.multiply(val1[i], val2[i]))+"!="+str(res[i]))
                 failed += 1
         print("Subtraction test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
@@ -78,16 +85,15 @@ class TestAdd(unittest.TestCase):
 
         val1,val2,res = ReadData.readData3Col(filePath)
 
-        calculator = cal("Division Calculator Testing")
         passed = 0
         failed = 0
         for i in range(0, len(val1)):
             l = len(str(res[i]).split('.')[1])
             try:
-                self.assertEqual(("{:."+str(l)+"f}").format(round(calculator.divide(val2[i], val1[i]),l)), str(res[i]))
+                self.assertEqual(("{:."+str(l)+"f}").format(round(self.calculator.divide(val2[i], val1[i]),l)), str(res[i]))
                 passed += 1
             except Exception:
-                print("Division : "+str(("{:."+str(l)+"f}").format(round(calculator.divide(val2[i], val1[i]),l))) +" != "+str(res[i]))
+                print("Division : "+str(("{:."+str(l)+"f}").format(round(self.calculator.divide(val2[i], val1[i]),l))) +" != "+str(res[i]))
                 failed += 1
         print("Division test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
@@ -97,15 +103,14 @@ class TestAdd(unittest.TestCase):
 
         val1,val2,res = ReadData.readData3Col(filePath)
 
-        calculator = cal("Multiplication Calculator Testing")
         passed = 0
         failed = 0
         for i in range(0, len(val1)):
             try:
-                self.assertEqual(calculator.multiply(val1[i], val2[i]), res[i])
+                self.assertEqual(self.calculator.multiply(val1[i], val2[i]), res[i])
                 passed += 1
             except Exception:
-                print("Multiplication : "+str(calculator.multiply(val1[i], val2[i]))+"!="+str(res[i]))
+                print("Multiplication : "+str(self.calculator.multiply(val1[i], val2[i]))+"!="+str(res[i]))
                 failed += 1
         print("Multiplication test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
@@ -115,15 +120,14 @@ class TestAdd(unittest.TestCase):
 
         val1,res = ReadData.readData2Col(filePath)
 
-        calculator = cal("Square Calculator Testing")
         passed = 0
         failed = 0
         for i in range(0, len(val1)):
             try:
-                self.assertEqual(calculator.square(val1[i]), res[i])
+                self.assertEqual(self.calculator.square(val1[i]), res[i])
                 passed += 1
             except Exception:
-                print("Square : "+str(calculator.multiply(val1[i]))+"!="+str(res[i]))
+                print("Square : "+str(self.calculator.multiply(val1[i]))+"!="+str(res[i]))
                 failed += 1
         print("Square test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
@@ -134,19 +138,18 @@ class TestAdd(unittest.TestCase):
 
         val1, res = ReadData.readData2Col(filePath)
 
-        calculator = cal("Square Root Calculator Testing")
         passed = 0
         failed = 0
         for i in range(0, len(val1)):
 
             l = len(str(res[i]).split('.')[1])
             try:
-                self.assertEqual(("{:." + str(l) + "f}").format(round(calculator.square_root(val1[i]), l)),
+                self.assertEqual(("{:." + str(l) + "f}").format(round(self.calculator.square_root(val1[i]), l)),
                                  str(res[i]))
                 passed += 1
             except Exception:
                 print("Square Root : " + str(
-                    ("{:." + str(l) + "f}").format(round(calculator.square_root( val1[i]), l))) + " != " + str(
+                    ("{:." + str(l) + "f}").format(round(self.calculator.square_root( val1[i]), l))) + " != " + str(
                     res[i]))
                 failed += 1
 
