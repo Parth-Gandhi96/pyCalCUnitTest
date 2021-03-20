@@ -12,11 +12,9 @@
 - [X] Write unit test for each object method in Calculator class
 - [X] Provide test-report after for each test method (how many passed and failed test cases)
 
-
-
-### Later actions for removing redundant code:
+#### Later actions for removing redundant code:
 - [X] Make modularized class for reading data from file for each test case
 
-References/ Documentations used:
+### References/ Documentations used:
 - https://docs.python.org/3/library/unittest.html#class-and-module-fixtures
 - https://docs.python.org/3/library/csv.html
