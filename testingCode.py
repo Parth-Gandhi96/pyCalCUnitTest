@@ -87,7 +87,7 @@ class TestAdd(unittest.TestCase):
                 passed += 1
             except Exception:
                 print("Division : "+str(("{:."+str(l)+"f}").format(round(calculator.divide(val2[i], val1[i]),l))) +" != "+str(res[i]))
-                failed += 1;
+                failed += 1
         print("Division test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
     def test_multiply(self):
@@ -144,6 +144,38 @@ class TestAdd(unittest.TestCase):
                 failed += 1
         print("Square test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
+
+    def test_square_root(self):
+        '''Testing Square Root menthod'''
+        filePath = 'testCases/Unit Test Square Root.csv'
+        val1 = []
+        res = []
+        with open(filePath) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count != 0:
+                    val1.append(float(row[0]))
+                    res.append(float(row[1]))
+                line_count += 1
+
+        calculator = cal("Square Root Calculator Testing")
+        passed = 0
+        failed = 0
+        for i in range(0, len(val1)):
+
+            l = len(str(res[i]).split('.')[1])
+            try:
+                self.assertEqual(("{:." + str(l) + "f}").format(round(calculator.square_root(val1[i]), l)),
+                                 str(res[i]))
+                passed += 1
+            except Exception:
+                print("Square Root : " + str(
+                    ("{:." + str(l) + "f}").format(round(calculator.square_root( val1[i]), l))) + " != " + str(
+                    res[i]))
+                failed += 1
+
+        print("Square Root test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
 
 if __name__ == '__main__':
