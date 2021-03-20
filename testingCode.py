@@ -118,6 +118,33 @@ class TestAdd(unittest.TestCase):
                 failed += 1
         print("Multiplication test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
 
+    def test_square(self):
+        '''Testing Square menthod'''
+        filePath = 'testCases/Unit Test Square.csv'
+        val1 = []
+        res = []
+        with open(filePath) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count != 0:
+                    val1.append(float(row[0]))
+                    res.append(float(row[1]))
+                line_count += 1
+
+        calculator = cal("Square Calculator Testing")
+        passed = 0
+        failed = 0
+        for i in range(0, len(val1)):
+            try:
+                self.assertEqual(calculator.square(val1[i]), res[i])
+                passed += 1
+            except Exception:
+                print("Square : "+str(calculator.multiply(val1[i]))+"!="+str(res[i]))
+                failed += 1
+        print("Square test-report : Passed:" + str(passed) + "   Failed:" + str(failed))
+
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
