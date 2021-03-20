@@ -2,12 +2,9 @@ import unittest
 from main import cal
 import csv
 
-class TestAdd(unittest.TestCase):
-    '''Testing the calculator'''
-
-    def test_add(self):
-        '''Testing add menthod'''
-        filePath = 'testCases/Unit Test Addition.csv'
+class ReadData:
+    @staticmethod
+    def readData3Col(filePath):
         val1 = []
         val2 = []
         res = []
@@ -20,6 +17,29 @@ class TestAdd(unittest.TestCase):
                     val2.append(float(row[1]))
                     res.append(float(row[2]))
                 line_count += 1
+        return val1,val2,res
+
+    def readData2Col(filePath):
+        val1 = []
+        res = []
+        with open(filePath) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count != 0:
+                    val1.append(float(row[0]))
+                    res.append(float(row[1]))
+                line_count += 1
+        return val1,res
+
+class TestAdd(unittest.TestCase):
+    '''Testing the calculator'''
+
+    def test_add(self):
+        '''Testing add menthod'''
+        filePath = 'testCases/Unit Test Addition.csv'
+
+        val1,val2,res = ReadData.readData3Col(filePath)
 
         calculator = cal("Addition Calculator Testing")
         passed = 0
@@ -36,18 +56,8 @@ class TestAdd(unittest.TestCase):
     def test_subtract(self):
         '''Testing subtract menthod'''
         filePath = 'testCases/Unit Test Subtraction.csv'
-        val1 = []
-        val2 = []
-        res = []
-        with open(filePath) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count != 0:
-                    val1.append(float(row[0]))
-                    val2.append(float(row[1]))
-                    res.append(float(row[2]))
-                line_count += 1
+
+        val1,val2,res = ReadData.readData3Col(filePath)
 
         calculator = cal("Subtraction Calculator Testing")
         passed = 0
@@ -64,18 +74,8 @@ class TestAdd(unittest.TestCase):
     def test_divide(self):
         '''Testing Division menthod'''
         filePath = 'testCases/Unit Test Division.csv'
-        val1 = []
-        val2 = []
-        res = []
-        with open(filePath) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count != 0:
-                    val1.append(float(row[0]))
-                    val2.append(float(row[1]))
-                    res.append(float(row[2]))
-                line_count += 1
+
+        val1,val2,res = ReadData.readData3Col(filePath)
 
         calculator = cal("Division Calculator Testing")
         passed = 0
@@ -93,18 +93,8 @@ class TestAdd(unittest.TestCase):
     def test_multiply(self):
         '''Testing multiplication menthod'''
         filePath = 'testCases/Unit Test Multiplication.csv'
-        val1 = []
-        val2 = []
-        res = []
-        with open(filePath) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count != 0:
-                    val1.append(float(row[0]))
-                    val2.append(float(row[1]))
-                    res.append(float(row[2]))
-                line_count += 1
+
+        val1,val2,res = ReadData.readData3Col(filePath)
 
         calculator = cal("Multiplication Calculator Testing")
         passed = 0
@@ -121,16 +111,8 @@ class TestAdd(unittest.TestCase):
     def test_square(self):
         '''Testing Square menthod'''
         filePath = 'testCases/Unit Test Square.csv'
-        val1 = []
-        res = []
-        with open(filePath) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count != 0:
-                    val1.append(float(row[0]))
-                    res.append(float(row[1]))
-                line_count += 1
+
+        val1,res = ReadData.readData2Col(filePath)
 
         calculator = cal("Square Calculator Testing")
         passed = 0
@@ -148,16 +130,8 @@ class TestAdd(unittest.TestCase):
     def test_square_root(self):
         '''Testing Square Root menthod'''
         filePath = 'testCases/Unit Test Square Root.csv'
-        val1 = []
-        res = []
-        with open(filePath) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count != 0:
-                    val1.append(float(row[0]))
-                    res.append(float(row[1]))
-                line_count += 1
+
+        val1, res = ReadData.readData2Col(filePath)
 
         calculator = cal("Square Root Calculator Testing")
         passed = 0
