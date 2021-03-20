@@ -19,6 +19,7 @@ class ReadData:
                 line_count += 1
         return val1,val2,res
 
+    @staticmethod
     def readData2Col(filePath):
         val1 = []
         res = []
