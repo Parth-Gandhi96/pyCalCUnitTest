@@ -1,6 +1,6 @@
 ## IS 601 : Python - Create a Calculator
 
-###Check List:
+### Check List:
 
 #### Class implementation
 - [X] Implement Calculator Class 
